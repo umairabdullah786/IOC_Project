@@ -1,30 +1,32 @@
 package ioc;
-import java.util.ResourceBundle;
 
-import beans.*;
+import java.util.*;
 
-public class IOC {
+public class IOC{
 	static IOC ioc=null;
-	private IOC() {}
+	static String propertypath;
+	private IOC() { }
 	
-	public static IOC getContainer() {
+	public static IOC getContainer(String pkg) {
+		propertypath=pkg;
 		if(ioc==null) {
 			ioc=new IOC();
 		}
 		return ioc;
 	}
-	
-    public void manager(String pkg){
-        try{
-        	ResourceBundle bundle=ResourceBundle.getBundle(pkg+".default");
-        	String cls=bundle.getString("class");
-        	String dependent=bundle.getString(cls+".dependent");
-            Needy n;
-            n=(Needy)Class.forName(pkg+"."+cls).getDeclaredConstructor(MyClass.class).newInstance(new MyClass());
-            //    Needy n=new Needy(new MyClass());
-            n.caller();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+	public void manager() {
+		try{
+			ResourceBundle bundle=ResourceBundle.getBundle(propertypath);
+			//beans.default
+			String subpath=propertypath.substring(0,propertypath.lastIndexOf('.'));
+			String cls=bundle.getString("class");
+			String dependent=bundle.getString(cls+".dependent");
+			Class n=Class.forName(cls);
+			Class c=Class.forName(dependent);
+			n.getDeclaredConstructor(c).newInstance(c.newInstance());
+			//ioc.IocInterface iinterface=ioc.IocInterface.class.cast(n.getDeclaredConstructor(c).newInstance(c.newInstance()));
+		}catch(Exception cnf){
+			cnf.printStackTrace();
+		}
+	}
 }

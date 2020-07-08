@@ -1,12 +1,8 @@
 package startUp;
-import ioc.*;
+import ioc.IOC;
+
 public class MainClass {
-
 	public static void main(String[] args) {
-		IOC ioc=IOC.getContainer();
-		ioc.manager("beans");
-		
-
+		IOC.getContainer("beans.default").manager();
 	}
-
 }

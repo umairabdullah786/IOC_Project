@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean>
+	<name>Needy</name>
+	<class>beans.Needy</class>
+	<depends-on>beans.MyClass</depends-on>
+	<depends-on>beans.Abc</depends-on>
+	</bean>
+	<bean>
+		<name>MyClass</name>
+		<class>beans.MyClass</class>
+		<depends-on>none</depends-on>
+	</bean>
+	<bean>
+		<name>Abc</name>
+		<class>beans.Abc</class>
+		<depends-on>none</depends-on>
+	</bean>
+<!-- 	<bean> -->
+<!-- 		<name>YourClass</name> -->
+<!-- 		<class>beans.YourClass</class> -->
+<!-- 		<depends-on>none</depends-on> -->
+<!-- 	</bean>	 -->
+</beans>

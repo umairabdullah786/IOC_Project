@@ -1,6 +1,6 @@
 package beans;
-import ioc.IocInterface;
-public class MyClass implements IocInterface{
+
+public class MyClass {
 	public MyClass(){}
 	private int x=10;
 	private int y=20;

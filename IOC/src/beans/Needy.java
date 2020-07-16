@@ -1,15 +1,14 @@
 package beans;
-import ioc.IocInterface;
-public class Needy implements IocInterface{
+import java.util.*;
+
+public class Needy{
 	public MyClass ms=null;
 	public Abc mn=null;
+		
 	public Needy(MyClass m){
 		this.ms=m;
-		this.ms.getX();
-		this.ms.getSum();
-		this.ms.printer();
-	}
-//	public Needy(Abc a) {
-//		this.mn.getX();
-//	}
+//		this.ms.getX();
+//		this.ms.getSum();
+//		this.ms.printer();
+	}	
 }

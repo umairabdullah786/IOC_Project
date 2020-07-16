@@ -23,7 +23,8 @@ public class IOC{
 		}
 		return ioc;
 	}
-	public void manager() {
+	public HashMap<String, Object> manager() {
+		HashMap<String, Object> pool=null;
 		try{
 			
 			//3rd Method using xml parsing 1 or more than 1 class
@@ -52,7 +53,12 @@ public class IOC{
 				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement=(Element) nNode;
 					if(!eElement.getElementsByTagName("depends-on").item(0).getTextContent().equals("none")) {
-						al.add(eElement.getElementsByTagName("depends-on").item(0).getTextContent());
+						String className=eElement.getElementsByTagName("depends-on").item(0).getTextContent();
+						for(int k=0;k<len;k++) {
+							if((((Element)nList.item(k)).getElementsByTagName("name").item(0).getTextContent()).equals(className)){
+								al.add(((Element)nList.item(k)).getElementsByTagName("class").item(0).getTextContent());
+							}
+						}		
 						hm.put(eElement.getElementsByTagName("class").item(0).getTextContent(),al);
 					}
 				}
@@ -62,9 +68,11 @@ public class IOC{
 			for(String s:keys) {
 				Class n=Class.forName(s);
 				ArrayList<String> dependents=hm.get(s);
+				pool=new HashMap<String,Object>();
 				for(int i=0;i<dependents.size();i++) {
 					Class c=Class.forName(dependents.get(i));
-					n.getDeclaredConstructor(c).newInstance(c.newInstance());
+					Object obj=n.getDeclaredConstructor(c).newInstance(c.newInstance());
+					pool.put(s,obj);
 				}
 			}
 			
@@ -78,9 +86,11 @@ public class IOC{
 //			for(String s:keys) {
 //				Class n=Class.forName(s);
 //				ArrayList<String> dependents=hm.get(s);
+//				pool=new HashMap<String,Object>();
 //				for(int i=0;i<dependents.size();i++) {
 //					Class c=Class.forName(dependents.get(i));
-//					n.getDeclaredConstructor(c).newInstance(c.newInstance());
+//					Object obj=n.getDeclaredConstructor(c).newInstance(c.newInstance());
+//					pool.put(s,obj);
 //				}
 //			}
 			
@@ -100,5 +110,6 @@ public class IOC{
 		}catch(Exception cnf){
 			cnf.printStackTrace();
 		}
+		return pool;
 	}
 }

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 	<bean>
-	<name>Needy</name>
-	<class>beans.Needy</class>
-	<depends-on>beans.MyClass</depends-on>
-	<depends-on>beans.Abc</depends-on>
+		<name>Needy</name>
+		<class>beans.Needy</class>
+		<depends-on>MyClass</depends-on>
 	</bean>
 	<bean>
 		<name>MyClass</name>
 		<class>beans.MyClass</class>
 		<depends-on>none</depends-on>
 	</bean>
-	<bean>
-		<name>Abc</name>
-		<class>beans.Abc</class>
-		<depends-on>none</depends-on>
-	</bean>
 <!-- 	<bean> -->
-<!-- 		<name>YourClass</name> -->
-<!-- 		<class>beans.YourClass</class> -->
+<!-- 		<name>Registration</name> -->
+<!-- 		<class>beans.Registratio</class> -->
+<!-- 		<depends-on>Login</depends-on> -->
+<!-- 	</bean> -->
+<!-- 	<bean> -->
+<!-- 		<name>Login</name> -->
+<!-- 		<class>beans.Login</class> -->
 <!-- 		<depends-on>none</depends-on> -->
 <!-- 	</bean>	 -->
 </beans>

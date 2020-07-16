@@ -1,6 +1,6 @@
 package beans;
-import ioc.IocInterface;
-public class Abc implements IocInterface {
+
+public class Abc {
 		public Abc(){}
 		private int x=10;
 		public int getX() {

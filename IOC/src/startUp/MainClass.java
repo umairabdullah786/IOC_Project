@@ -11,6 +11,7 @@ public class MainClass {
 		nd.ms.getX();
 		nd.ms.getSum();
 		nd.ms.printer();
+		nd.ms.pattern();
 		
 //		Registration reg=(Registration)pool.get("beans.Registration");
 //		reg.lg.display();

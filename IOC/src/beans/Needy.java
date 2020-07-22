@@ -10,5 +10,6 @@ public class Needy{
 //		this.ms.getX();
 //		this.ms.getSum();
 //		this.ms.printer();
+//		this.ms.pattern();
 	}	
 }
